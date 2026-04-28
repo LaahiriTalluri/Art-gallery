@@ -1,0 +1,107 @@
+{% extends "base.html" %}
+
+{% block title %}Products - Art Gallery{% endblock %}
+
+{% block content %}
+
+<section class="py-5">
+    <div class="container">
+
+        <!-- PAGE HEADER -->
+        <div class="text-center mb-5">
+            <h1 class="fw-bold">Explore Our Art Collection</h1>
+            <p class="text-muted">
+                Discover premium paintings, sculptures and handcrafted masterpieces
+            </p>
+        </div>
+
+        <!-- SEARCH + FILTER -->
+        <div class="row mb-5 g-3">
+
+            <div class="col-md-8">
+                <input type="text"
+                       class="form-control"
+                       placeholder="Search artworks...">
+            </div>
+
+            <div class="col-md-4">
+                <select class="form-select">
+                    <option selected>All Categories</option>
+                    <option>Painting</option>
+                    <option>Canvas</option>
+                    <option>Abstract</option>
+                    <option>Spiritual</option>
+                    <option>Traditional</option>
+                </select>
+            </div>
+
+        </div>
+
+        <!-- PRODUCTS GRID -->
+        <div class="row g-4">
+
+            {% for product in products %}
+
+            <div class="col-md-6 col-lg-4 col-xl-3">
+
+                <div class="card product-card shadow-sm border-0 h-100">
+
+                    <img src="{{ url_for('static', filename='images/' + product.image) }}"
+                         class="card-img-top product-img"
+                         alt="{{ product.name }}">
+
+                    <div class="card-body d-flex flex-column text-center">
+
+                        <p class="text-muted small mb-1">
+                            {{ product.category }}
+                        </p>
+
+                        <h5 class="fw-bold mb-2">
+                            {{ product.name }}
+                        </h5>
+
+                        <p class="text-muted small mb-3">
+                            {{ product.description[:60] }}...
+                        </p>
+
+                        <h5 class="text-warning fw-bold mb-3">
+                            ₹{{ product.price }}
+                        </h5>
+
+                        <div class="mt-auto d-grid gap-2">
+
+                            <a href="/product/{{ product.id }}"
+                               class="btn btn-dark">
+                                View Details
+                            </a>
+
+                            <a href="/add-to-cart/{{ product.id }}"
+                               class="btn btn-outline-dark"
+                               onclick="addToCartMessage()">
+                                Add to Cart
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+        <!-- EMPTY CASE -->
+        {% if not products %}
+        <div class="text-center py-5">
+            <h3>No Products Found</h3>
+            <p class="text-muted">Please check back later.</p>
+        </div>
+        {% endif %}
+
+    </div>
+</section>
+
+{% endblock %}

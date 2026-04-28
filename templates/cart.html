@@ -1,0 +1,122 @@
+{% extends "base.html" %}
+
+{% block title %}Cart - Art Gallery{% endblock %}
+
+{% block content %}
+
+<section class="py-5">
+    <div class="container">
+
+        <div class="text-center mb-5">
+            <h1 class="fw-bold">Your Shopping Cart</h1>
+            <p class="text-muted">Review your selected artworks</p>
+        </div>
+
+        {% if cart_items %}
+
+        <div class="row">
+
+            <div class="col-lg-8">
+
+                {% for item in cart_items %}
+                <div class="card mb-4 shadow-sm border-0">
+                    <div class="row g-0 align-items-center">
+
+                        <div class="col-md-3">
+                            <img src="{{ url_for('static', filename='images/' + item.image) }}"
+                                 class="img-fluid rounded-start"
+                                 style="height:180px; width:100%; object-fit:cover;">
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="card-body">
+
+                                <h5 class="fw-bold">{{ item.name }}</h5>
+
+                                <p class="text-muted mb-1">
+                                    Category: {{ item.category }}
+                                </p>
+
+                                <p class="mb-0">
+                                    Quantity: {{ item.quantity }}
+                                </p>
+
+                            </div>
+                        </div>
+
+                        <div class="col-md-3 text-center">
+
+                            <h5 class="text-warning fw-bold">
+                                ₹{{ item.price * item.quantity }}
+                            </h5>
+
+                            <a href="/remove-from-cart/{{ item.id }}"
+                               class="btn btn-danger btn-sm mt-2">
+                               Remove
+                            </a>
+
+                        </div>
+
+                    </div>
+                </div>
+                {% endfor %}
+
+            </div>
+
+
+            <!-- BILL SECTION -->
+            <div class="col-lg-4">
+
+                <div class="card shadow border-0 p-4">
+
+                    <h4 class="fw-bold mb-4">Order Summary</h4>
+
+                    <div class="d-flex justify-content-between mb-2">
+                        <span>Total Items</span>
+                        <span>{{ cart_items|length }}</span>
+                    </div>
+
+                    <div class="d-flex justify-content-between mb-2">
+                        <span>Delivery</span>
+                        <span class="text-success">Free</span>
+                    </div>
+
+                    <hr>
+
+                    <div class="d-flex justify-content-between mb-4">
+                        <h5>Total</h5>
+                        <h5 class="text-warning fw-bold">₹{{ total }}</h5>
+                    </div>
+
+                    <a href="/checkout" class="btn btn-dark w-100">
+                        Proceed to Checkout
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        {% else %}
+
+        <div class="text-center py-5">
+
+            <h3 class="fw-bold">Your Cart is Empty</h3>
+
+            <p class="text-muted mb-4">
+                Add beautiful artworks to your cart.
+            </p>
+
+            <a href="/products" class="btn btn-warning btn-lg">
+                Continue Shopping
+            </a>
+
+        </div>
+
+        {% endif %}
+
+    </div>
+</section>
+
+{% endblock %}

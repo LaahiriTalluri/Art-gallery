@@ -1,0 +1,141 @@
+{% extends "base.html" %}
+
+{% block title %}Register - Art Gallery{% endblock %}
+
+{% block content %}
+
+<section class="py-5">
+    <div class="container">
+
+        <div class="row justify-content-center align-items-center min-vh-100">
+
+            <div class="col-md-7 col-lg-6">
+
+                <div class="card shadow border-0 p-4 p-md-5">
+
+                    <div class="text-center mb-4">
+                        <h1 class="fw-bold">Create Account</h1>
+                        <p class="text-muted">
+                            Join Art Gallery and start exploring beautiful artworks
+                        </p>
+                    </div>
+
+                    <form method="POST" action="/register">
+
+                        <div class="row">
+
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label fw-semibold">
+                                    First Name
+                                </label>
+
+                                <input type="text"
+                                       name="first_name"
+                                       class="form-control"
+                                       placeholder="Enter first name"
+                                       required>
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label fw-semibold">
+                                    Last Name
+                                </label>
+
+                                <input type="text"
+                                       name="last_name"
+                                       class="form-control"
+                                       placeholder="Enter last name"
+                                       required>
+                            </div>
+
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label fw-semibold">
+                                Email Address
+                            </label>
+
+                            <input type="email"
+                                   name="email"
+                                   class="form-control"
+                                   placeholder="Enter your email"
+                                   required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label fw-semibold">
+                                Phone Number
+                            </label>
+
+                            <input type="text"
+                                   name="phone"
+                                   class="form-control"
+                                   placeholder="Enter mobile number"
+                                   required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label fw-semibold">
+                                Password
+                            </label>
+
+                            <input type="password"
+                                   name="password"
+                                   class="form-control"
+                                   placeholder="Create password"
+                                   required>
+                        </div>
+
+                        <div class="mb-4">
+                            <label class="form-label fw-semibold">
+                                Confirm Password
+                            </label>
+
+                            <input type="password"
+                                   name="confirm_password"
+                                   class="form-control"
+                                   placeholder="Confirm password"
+                                   required>
+                        </div>
+
+                        <div class="form-check mb-4">
+                            <input class="form-check-input"
+                                   type="checkbox"
+                                   id="terms"
+                                   required>
+
+                            <label class="form-check-label" for="terms">
+                                I agree to the Terms & Conditions
+                            </label>
+                        </div>
+
+                        <button type="submit"
+                                class="btn btn-warning w-100 py-2 fw-bold">
+                            Create Account
+                        </button>
+
+                    </form>
+
+                    <div class="text-center mt-4">
+
+                        <p class="mb-0">
+                            Already have an account?
+
+                            <a href="/login"
+                               class="text-dark fw-bold text-decoration-none">
+                               Login
+                            </a>
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+{% endblock %}

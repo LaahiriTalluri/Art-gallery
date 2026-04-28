@@ -1,0 +1,152 @@
+{% extends "base.html" %}
+
+{% block title %}Home - Art Gallery{% endblock %}
+
+{% block content %}
+
+<!-- HERO SECTION -->
+<section class="hero-section">
+    <div class="container">
+        <div class="row align-items-center min-vh-100">
+
+            <div class="col-lg-6 text-white">
+                <h1 class="display-3 fw-bold mb-4">
+                    Discover Beautiful <span class="text-warning">Indian Art</span>
+                </h1>
+
+                <p class="lead mb-4">
+                    Buy premium paintings, wall decor, sculptures and timeless masterpieces.
+                </p>
+
+                <a href="/products" class="btn btn-warning btn-lg px-4 me-3">
+                    Explore Collection
+                </a>
+
+                <a href="/register" class="btn btn-outline-light btn-lg px-4">
+                    Join Now
+                </a>
+            </div>
+
+            <div class="col-lg-6 text-center">
+                <img src="{{ url_for('static', filename='images/hero-art.png') }}"
+                     class="img-fluid hero-img"
+                     alt="Art">
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+<!-- FEATURED PRODUCTS -->
+<section class="py-5 bg-light">
+    <div class="container">
+
+        <div class="text-center mb-5">
+            <h2 class="fw-bold">Featured Artworks</h2>
+            <p class="text-muted">Handpicked collections for art lovers</p>
+        </div>
+
+        <div class="row g-4">
+
+            {% for product in products %}
+
+            <div class="col-md-4 col-lg-3">
+                <div class="card border-0 shadow-sm h-100 product-card">
+
+                    <img src="{{ url_for('static', filename='images/' + product.image) }}"
+                         class="card-img-top product-img">
+
+                    <div class="card-body text-center">
+
+                        <h5 class="fw-bold">{{ product.name }}</h5>
+
+                        <p class="text-muted small">
+                            {{ product.category }}
+                        </p>
+
+                        <h6 class="text-warning fw-bold mb-3">
+                            ₹{{ product.price }}
+                        </h6>
+
+                        <a href="/product/{{ product.id }}"
+                           class="btn btn-dark btn-sm px-4">
+                            View Details
+                        </a>
+
+                    </div>
+                </div>
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+</section>
+
+
+<!-- CATEGORY SECTION -->
+<section class="py-5">
+    <div class="container">
+
+        <div class="text-center mb-5">
+            <h2 class="fw-bold">Browse Categories</h2>
+        </div>
+
+        <div class="row g-4 text-center">
+
+            <div class="col-md-3">
+                <div class="category-box shadow-sm">
+                    🎨
+                    <h5>Paintings</h5>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="category-box shadow-sm">
+                    🖼️
+                    <h5>Wall Decor</h5>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="category-box shadow-sm">
+                    🗿
+                    <h5>Sculptures</h5>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="category-box shadow-sm">
+                    🏺
+                    <h5>Handicrafts</h5>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+
+<!-- OFFER SECTION -->
+<section class="py-5 bg-dark text-white text-center">
+    <div class="container">
+
+        <h2 class="fw-bold mb-3">
+            Support Independent Artists
+        </h2>
+
+        <p class="mb-4">
+            Every purchase empowers creativity across India.
+        </p>
+
+        <a href="/products" class="btn btn-warning btn-lg">
+            Shop Now
+        </a>
+
+    </div>
+</section>
+
+{% endblock %}

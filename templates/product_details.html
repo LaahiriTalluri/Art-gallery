@@ -1,0 +1,113 @@
+{% extends "base.html" %}
+
+{% block title %}{{ product.name }} - Art Gallery{% endblock %}
+
+{% block content %}
+
+<section class="py-5">
+    <div class="container">
+
+        <div class="row g-5 align-items-center">
+
+            <!-- PRODUCT IMAGE -->
+            <div class="col-lg-6">
+
+                <div class="card border-0 shadow-sm">
+                    <img src="{{ url_for('static', filename='images/' + product.image) }}"
+                         class="img-fluid rounded"
+                         style="height:500px; width:100%; object-fit:cover;"
+                         alt="{{ product.name }}">
+                </div>
+
+            </div>
+
+
+            <!-- PRODUCT DETAILS -->
+            <div class="col-lg-6">
+
+                <p class="text-uppercase text-muted fw-semibold mb-2">
+                    {{ product.category }}
+                </p>
+
+                <h1 class="fw-bold mb-3">
+                    {{ product.name }}
+                </h1>
+
+                <h2 class="text-warning fw-bold mb-4">
+                    ₹{{ product.price }}
+                </h2>
+
+                <p class="text-muted mb-4" style="line-height:1.8;">
+                    {{ product.description }}
+                </p>
+
+                <div class="mb-4">
+                    <span class="badge bg-success px-3 py-2">
+                        In Stock
+                    </span>
+                </div>
+
+                <div class="d-grid gap-3 d-md-flex">
+
+                    <a href="/add-to-cart/{{ product.id }}"
+                       class="btn btn-dark btn-lg px-4"
+                       onclick="addToCartMessage()">
+                        Add to Cart
+                    </a>
+
+                    <a href="/products"
+                       class="btn btn-outline-dark btn-lg px-4">
+                        Continue Shopping
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- RELATED SECTION -->
+        <div class="mt-5 pt-5">
+
+            <div class="text-center mb-4">
+                <h2 class="fw-bold">Why Choose This Artwork?</h2>
+            </div>
+
+            <div class="row g-4 text-center">
+
+                <div class="col-md-4">
+                    <div class="card p-4 shadow-sm border-0 h-100">
+                        <h5>🎨 Handmade Quality</h5>
+                        <p class="text-muted mb-0">
+                            Crafted with attention to detail and premium finish.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="card p-4 shadow-sm border-0 h-100">
+                        <h5>🚚 Safe Delivery</h5>
+                        <p class="text-muted mb-0">
+                            Secure packaging for safe doorstep delivery.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="card p-4 shadow-sm border-0 h-100">
+                        <h5>🏠 Perfect Decor</h5>
+                        <p class="text-muted mb-0">
+                            Enhances living rooms, offices and interiors.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+{% endblock %}
